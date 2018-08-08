@@ -26,8 +26,40 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
+  public Long getId() {
+    return id;
+  }
+
+  @Override
+  public String getUsername() {
+    return username;
+  }
+
+  public Set<Tweet> getTweets() {
+    return tweets;
+  }
+
+  public Set<User> getFollowing() {
+    return following;
+  }
+
+  public Set<User> getFollowers() {
+    return followers;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
   @Column(unique = true)
   private String username;
+
+  @Column(name = "fullName")
+  private String fullName;
+
+  @OneToMany(mappedBy = "author")
+  private Set<Tweet> tweets = new HashSet<>();
 
   @JsonIgnore
   @ManyToMany
@@ -45,6 +77,12 @@ public class User implements UserDetails {
     this.password = password;
   }
 
+  public User(String username, String password, String fullName) {
+    this.username = username;
+    this.password = password;
+    this.fullName = fullName;
+  }
+
   public void addFollowing(User... users){
     following.addAll(Arrays.asList(users));
   }
@@ -53,6 +91,10 @@ public class User implements UserDetails {
   @JsonIgnore
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return AUTHORITIES;
+  }
+
+  public String getFullName() {
+    return String.format("%s [%s]", this.fullName, this.username);
   }
 
   @Override

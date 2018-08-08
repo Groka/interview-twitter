@@ -8,6 +8,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @NoArgsConstructor(access = PRIVATE)
 public class TweetDTO {
+  private String authorFullName;
   private Long id;
   private String content;
   private String author;
@@ -16,5 +17,6 @@ public class TweetDTO {
     this.id = tweet.getId();
     this.content = tweet.getContent();
     this.author = tweet.getAuthor().getUsername();
+    this.authorFullName = tweet.getAuthor().getFullName();
   }
 }

@@ -45,6 +45,15 @@ public class UserService implements UserDetailsService {
     return convertUsersToDTOs(user.getFollowers());
   }
 
+//  @Transactional
+//  public Collection<UserDTO> getAllUsers(Principal principal) {
+//
+//  }
+
+  public UserDTO getSingleUser(String username) {
+    return new UserDTO(getUser(username));
+  }
+
   private User getUser(String username) {
     return userRepository.findOneByUsername(username);
   }

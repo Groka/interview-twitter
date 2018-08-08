@@ -3,6 +3,7 @@ package com.javalanguagezone.interviewtwitter.controller;
 import com.javalanguagezone.interviewtwitter.service.UserService;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -25,5 +26,10 @@ public class UserController {
   @GetMapping("/following")
   public Collection<UserDTO> following(Principal principal) {
     return userService.getUsersFollowing(principal);
+  }
+
+  @GetMapping(value = "/users/{username}")
+  public UserDTO user(@PathVariable String username) {
+    return userService.getSingleUser(username);
   }
 }
