@@ -1,12 +1,26 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import { UserModel } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
+
+  http: HttpClient;
+
+  constructor(private inj: Injector) {}
 
   login(username: string, password: string) {
     const authToken = this.generateAuthToken(username, password);
     this.setAuthToken(authToken);
     this.storeUsername(username);
+  }
+
+  register(model: any) {
+    this.login(model.username, model.password);
+    this.http = this.inj.get(HttpClient);
+    this.http.post<any>('/api/register', model).subscribe((user: any) => {
+      // console.log(user);
+    });
   }
 
   getAuthToken(): string {

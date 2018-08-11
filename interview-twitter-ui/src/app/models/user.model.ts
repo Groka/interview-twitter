@@ -4,6 +4,6 @@ export interface UserModel {
     numberOfTweets: number,
     numberOfUsersFollowing: number,
     username: string,
-    fullName: string
+    fullName: string,
   }
   

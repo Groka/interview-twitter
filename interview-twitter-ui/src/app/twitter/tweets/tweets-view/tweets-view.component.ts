@@ -17,6 +17,9 @@ export class TweetsViewComponent implements OnInit {
 
   ngOnInit() {
     this.$tweets = this.tweetService.fetch();
+    this.$tweets.subscribe((tweets: TweetModel[]) => {
+      console.log(tweets);
+    });
   }
 
 }

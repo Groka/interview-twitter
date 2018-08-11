@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
       setHeaders: {
         "X-Requested-With": 'XMLHttpRequest',
         "Authorization": 'Basic ' + this.authService.getAuthToken()
-      }
+      } 
     });
     return next.handle(req).do((event: HttpEvent<any>) => {
     }, (err: any) => {

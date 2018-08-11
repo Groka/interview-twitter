@@ -26,32 +26,6 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
-  public Long getId() {
-    return id;
-  }
-
-  @Override
-  public String getUsername() {
-    return username;
-  }
-
-  public Set<Tweet> getTweets() {
-    return tweets;
-  }
-
-  public Set<User> getFollowing() {
-    return following;
-  }
-
-  public Set<User> getFollowers() {
-    return followers;
-  }
-
-  @Override
-  public String getPassword() {
-    return password;
-  }
-
   @Column(unique = true)
   private String username;
 
