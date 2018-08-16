@@ -16,10 +16,11 @@ export class AuthService {
   }
 
   register(model: any) {
-    this.login(model.username, model.password);
+    // this.login(model.username, model.password);
     this.http = this.inj.get(HttpClient);
     this.http.post<any>('/api/register', model).subscribe((user: any) => {
-      // console.log(user);
+      console.log(user);
+      this.login(user.username, user.password);
     });
   }
 
