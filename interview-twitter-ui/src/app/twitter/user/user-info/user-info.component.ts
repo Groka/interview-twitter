@@ -7,17 +7,7 @@ import { TweetService } from '../../../services/tweet/tweet.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
 
   @Input() user: UserModel;
-
-  constructor(private tweetService: TweetService) {
-
-  }
-
-  ngOnInit() {
-    this.tweetService.fetchForUser(this.user.username).subscribe(tweets => {
-      this.user.numberOfTweets = tweets.length;
-    });
-  }
 }
